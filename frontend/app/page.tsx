@@ -20,6 +20,7 @@ import {
   CartesianGrid,
   Cell,
   Legend,
+  LabelList,
   Line,
   LineChart,
   ResponsiveContainer,
@@ -162,8 +163,8 @@ const chartDefs = (
     {grad("gGreen", "#C2FFE6", "#42D6A4", "#12805F")}
     {grad("gAmber", "#FFE3B5", "#FFBF69", "#B5701A")}
     {grad("gViolet", "#E1D6FF", "#A78BFA", "#5B3FC4")}
-    {grad("gTealH", "#B8FFF3", "#2DE2C5", "#0E7C6E", true)}
-    {grad("gRoseH", "#FFC2CC", "#FF647C", "#A92B43", true)}
+    {grad("gTealH", "#127A6D", "#2DE2C5", "#C9FFF6", true)}
+    {grad("gRoseH", "#9E2A41", "#FF647C", "#FFD0D8", true)}
   </defs>
 );
 
@@ -1009,18 +1010,39 @@ export default function Home() {
                         <XAxis type="number" domain={[0, 100]} tick={{ fontSize: 11, fill: "#94A3B8" }} />
                         <YAxis type="category" dataKey="category" width={110} tick={{ fontSize: 11, fill: "#94A3B8" }} />
                         <Tooltip
-                          contentStyle={tooltipStyle}
-                          labelStyle={{ color: "#2DE2C5", fontWeight: 600 }}
-                          cursor={{ fill: "rgba(45, 226, 197, 0.08)" }}
-                          formatter={(value) => `${value}%`}
+                          cursor={{ fill: "rgba(224, 176, 255, 0.07)" }}
+                          content={({ active, payload }) => {
+                            if (!active || !payload?.length) return null;
+                            const d = payload[0].payload as (typeof attackData)[number];
+                            return (
+                              <div className="rounded-xl border border-[#2DE2C5]/40 px-4 py-3 text-xs leading-5 text-slate-200" style={tooltipStyle}>
+                                <p className="mb-1 font-semibold text-[#2DE2C5]">{d.category}</p>
+                                <p>Recall: <span className="font-semibold text-white">{d.recall.toFixed(2)}%</span></p>
+                                <p>Records: {d.records.toLocaleString()}</p>
+                                <p>Missed: {d.missed.toLocaleString()}</p>
+                              </div>
+                            );
+                          }}
                         />
-                        <Bar dataKey="recall" name="Recall" radius={[0, 6, 6, 0]}>
+                        <Bar
+                          dataKey="recall"
+                          name="Recall"
+                          barSize={20}
+                          radius={[10, 10, 10, 10]}
+                          background={{ fill: "rgba(255,255,255,0.06)", radius: 10 }}
+                        >
                           {attackData.map((item) => (
                             <Cell
                               key={item.category}
                               fill={item.category === "Fuzzers" ? "url(#gRoseH)" : "url(#gTealH)"}
                             />
                           ))}
+                          <LabelList
+                            dataKey="recall"
+                            position="insideRight"
+                            formatter={(v) => `${Number(v).toFixed(1)}%`}
+                            style={{ fontSize: 11, fontWeight: 700, fill: "#0B1020" }}
+                          />
                         </Bar>
                       </BarChart>
                     </ResponsiveContainer>
