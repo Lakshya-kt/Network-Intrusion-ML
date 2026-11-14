@@ -8,6 +8,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
+from sklearn.svm import LinearSVC
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import (
@@ -19,7 +20,7 @@ from sklearn.metrics import (
     f1_score,
 )
 
-DATA_DIR = Path(r"D:\ml project\dataset")
+DATA_DIR = Path(__file__).resolve().parent / "dataset"
 TARGET = "label"
 MAX_FPR = 0.05
 RANDOM_STATE = 42
@@ -96,6 +97,12 @@ models = {
         random_state=RANDOM_STATE,
         n_jobs=-1,
     ),
+    "Linear SVC": LinearSVC(
+        C=1.0,
+        class_weight="balanced",
+        max_iter=5000,
+        random_state=RANDOM_STATE,
+    ),
 }
 
 results = []
@@ -104,6 +111,7 @@ DASHBOARD_DIR.mkdir(parents=True, exist_ok=True)
 validation_export=pd.DataFrame({
     "label": y_val.to_numpy()
 })
+# --------------------------------------------------
 # --------------------------------------------------
 # 5. Fit models and select thresholds on validation
 # --------------------------------------------------
@@ -119,15 +127,23 @@ for name, model in models.items():
 
     pipeline.fit(X_train, y_train)
 
-    # Probability of the positive class: attack (label 1).
-    attack_scores = pipeline.predict_proba(X_val)[:, 1]
-    score_column=(
+    # Get attack scores (LinearSVC uses decision_function).
+    if name == "Linear SVC":
+        attack_scores = pipeline.decision_function(X_val)
+    else:
+        attack_scores = pipeline.predict_proba(X_val)[:, 1]
+
+    score_column = (
         "logistic_regression_score"
         if name == "Logistic Regression"
         else "random_forest_score"
+        if name == "Random Forest"
+        else "linear_svc_score"
     )
-    validation_export[score_column]=attack_scores
-    # Choose the threshold with maximum recall while FPR <= 5%.
+
+    validation_export[score_column] = attack_scores
+
+    # Choose threshold with maximum recall while FPR <= 5%.
     fpr, tpr, thresholds = roc_curve(y_val, attack_scores)
 
     eligible = np.flatnonzero(
@@ -177,6 +193,8 @@ for name, model in models.items():
         "val_f1": val_f1,
         "val_ap": val_ap,
     })
+
+
 # --------------------------------------------------
 # Export validation predictions for the dashboard
 # --------------------------------------------------
@@ -214,6 +232,7 @@ print("Validation recall:", round(best["val_recall"], 4))
 print("Validation FPR:", round(best["val_fpr"], 4))
 
 # --------------------------------------------------
+# --------------------------------------------------
 # 7. Final evaluation on the untouched official test set
 # --------------------------------------------------
 print("\nLoading official test set for final evaluation...")
@@ -226,7 +245,12 @@ X_test = test_df.drop(
 y_test = test_df[TARGET]
 
 # No fitting or threshold tuning on test data.
-test_scores = best["pipeline"].predict_proba(X_test)[:, 1]
+# LinearSVC uses decision_function; other models use predict_proba.
+if best["name"] == "Linear SVC":
+    test_scores = best["pipeline"].decision_function(X_test)
+else:
+    test_scores = best["pipeline"].predict_proba(X_test)[:, 1]
+
 test_predictions = (
     test_scores >= best["threshold"]
 ).astype(int)
@@ -252,7 +276,6 @@ print(
 print(f"F1-score: {f1_score(y_test, test_predictions):.4f}")
 print(f"Average precision: {average_precision_score(y_test, test_scores):.4f}")
 print(f"TN={tn}, FP={fp}, FN={fn}, TP={tp}")
-
 # --------------------------------------------------
 # 8. Save validation results for later comparison
 # --------------------------------------------------
@@ -270,8 +293,13 @@ summary = pd.DataFrame([
 ])
 
 summary.to_csv("validation_model_comparison.csv", index=False)
+summary.to_json(
+    DASHBOARD_DIR / "validation_model_comparison.json",
+    orient="records",
+)
 print("\nSaved validation_model_comparison.csv")
 
+# --------------------------------------------------
 # --------------------------------------------------
 # 9. Post-evaluation error analysis
 # Diagnostic only: do not tune the threshold on test data.
@@ -282,11 +310,15 @@ print("ERROR ANALYSIS")
 print("=" * 60)
 
 # Compare score distributions for normal traffic.
-val_scores = best["pipeline"].predict_proba(X_val)[:, 1]
+if best["name"] == "Linear SVC":
+    val_scores = best["pipeline"].decision_function(X_val)
+else:
+    val_scores = best["pipeline"].predict_proba(X_val)[:, 1]
 
 val_normal_scores = val_scores[
     np.asarray(y_val) == 0
 ]
+
 test_normal_scores = test_scores[
     np.asarray(y_test) == 0
 ]
