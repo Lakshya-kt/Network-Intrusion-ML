@@ -506,9 +506,11 @@ export default function Home() {
   /* -------------------------------------------------------------- */
 
   useEffect(() => {
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
     Promise.all([
-      fetch("/data/validation_scores.json"),
-      fetch("/data/validation_model_comparison.json"),
+      fetch(`${basePath}/data/validation_scores.json`),
+      fetch(`${basePath}/data/validation_model_comparison.json`),
     ])
       .then(async ([scoresResponse, comparisonResponse]) => {
         if (!scoresResponse.ok) {
