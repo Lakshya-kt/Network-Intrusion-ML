@@ -461,6 +461,10 @@ export default function Home() {
   /* -------------------------------------------------------------- */
 
   useEffect(() => {
+    const basePath =
+      process.env.NODE_ENV === "production"
+        ? "/Network-Intrusion-ML"
+        : "";
     Promise.all([
       fetch("/data/validation_scores.json"),
       fetch("/data/validation_model_comparison.json"),
