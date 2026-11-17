@@ -7,6 +7,7 @@ import {
   BarChart3,
   ChevronDown,
   CircleHelp,
+  Clock,
   Database,
   Gauge,
   LayoutDashboard,
@@ -109,65 +110,19 @@ const navItems: { label: Tab; icon: typeof LayoutDashboard }[] = [
 /* Platinum background theme                                          */
 /* ------------------------------------------------------------------ */
 
-const pageStyle: CSSProperties = {
-  background: [
-    "radial-gradient(ellipse 55% 40% at 90% 0%, rgba(196,174,133,0.16), transparent 75%)",
-    "radial-gradient(ellipse 55% 45% at 0% 100%, rgba(183,192,202,0.30), transparent 75%)",
-    "radial-gradient(ellipse 40% 30% at 50% 50%, rgba(255,255,255,0.9), transparent 80%)",
-    "linear-gradient(135deg, #E6E9ED 0%, #F4F5F6 40%, #E2E5E9 100%)",
-  ].join(", "),
-};
+const pageStyle: CSSProperties = { background: "radial-gradient(ellipse 55% 40% at 90% 0%, rgba(45,226,197,0.10), transparent 75%), radial-gradient(ellipse 55% 45% at 0% 100%, rgba(167,139,250,0.10), transparent 75%), linear-gradient(135deg, #0B1020 0%, #10182B 48%, #0B1020 100%)" };
 
-const panelStyle: CSSProperties = {
-  background: [
-    "radial-gradient(100% 80% at 0% 0%, rgba(255,255,255,0.95), transparent 65%)",
-    "linear-gradient(145deg, #FFFFFF 0%, #F4F5F6 55%, #EAEDF0 100%)",
-  ].join(", "),
-  borderColor: "#D9DDE2",
-  boxShadow:
-    "inset 0 1px 0 rgba(255,255,255,0.95), 0 8px 28px -18px rgba(48,55,65,0.32), 0 2px 6px rgba(48,55,65,0.04)",
-};
+const panelStyle: CSSProperties = { background: "radial-gradient(100% 80% at 0% 0%, rgba(45,226,197,0.07), transparent 65%), linear-gradient(145deg, #172238 0%, #121C30 58%, #10192B 100%)", borderColor: "rgba(148,163,184,0.20)", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05), 0 14px 34px -22px rgba(0,0,0,0.75)" };
 
-const sidebarStyle: CSSProperties = {
-  background: [
-    "radial-gradient(100% 40% at 0% 0%, rgba(255,255,255,0.95), transparent 75%)",
-    "linear-gradient(180deg, #F8F9FA 0%, #E9ECEF 100%)",
-  ].join(", "),
-  boxShadow: "4px 0 24px rgba(45,52,60,0.045)",
-};
+const sidebarStyle: CSSProperties = { background: "linear-gradient(180deg, #111B2E 0%, #0D1526 100%)", boxShadow: "4px 0 28px rgba(0,0,0,0.22)" };
 
-const headerStyle: CSSProperties = {
-  background: [
-    "linear-gradient(90deg, rgba(255,255,255,0.95), rgba(246,247,248,0.92))",
-  ].join(", "),
-  boxShadow: "0 2px 12px rgba(40,45,55,0.035)",
-};
+const headerStyle: CSSProperties = { background: "linear-gradient(90deg, rgba(17,27,46,0.98), rgba(18,28,48,0.94))", boxShadow: "0 2px 18px rgba(0,0,0,0.18)" };
 
-const platinumActiveStyle: CSSProperties = {
-  background:
-    "linear-gradient(135deg, #FFFFFF 0%, #E9E4DA 100%)",
-  borderColor: "#C8B58F",
-  color: "#6A5433",
-  boxShadow:
-    "inset 0 1px 0 rgba(255,255,255,0.95), 0 4px 12px rgba(65,55,40,0.09)",
-};
+const platinumActiveStyle: CSSProperties = { background: "linear-gradient(135deg, rgba(45,226,197,0.18), rgba(45,226,197,0.07))", borderColor: "rgba(45,226,197,0.42)", color: "#9CF5E8", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.06), 0 4px 18px rgba(45,226,197,0.08)" };
 
-const platinumLogoStyle: CSSProperties = {
-  background:
-    "linear-gradient(145deg, #4A5059 0%, #20252B 55%, #737B84 100%)",
-  borderColor: "#B5A078",
-  color: "#F6EBD7",
-  boxShadow:
-    "inset 0 1px 0 rgba(255,255,255,0.35), 0 6px 14px rgba(35,40,48,0.20)",
-};
+const platinumLogoStyle: CSSProperties = { background: "linear-gradient(145deg, #16414A 0%, #0B222A 100%)", borderColor: "rgba(45,226,197,0.45)", color: "#9CF5E8", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.12), 0 6px 18px rgba(45,226,197,0.12)" };
 
-const platinumInsetStyle: CSSProperties = {
-  background:
-    "linear-gradient(145deg, #F5F6F7 0%, #E8EBEE 100%)",
-  borderColor: "#D7DCE1",
-  boxShadow:
-    "inset 0 2px 5px rgba(50,55,65,0.06), inset 0 1px 0 white",
-};
+const platinumInsetStyle: CSSProperties = { background: "linear-gradient(145deg, #101A2D 0%, #0D1628 100%)", borderColor: "rgba(148,163,184,0.22)", boxShadow: "inset 0 2px 8px rgba(0,0,0,0.24), inset 0 1px 0 rgba(255,255,255,0.04)" };
 
 /* ------------------------------------------------------------------ */
 /* Existing information-card colour system                            */
@@ -472,10 +427,10 @@ function SectionTitle({
 }) {
   return (
     <div className="mb-5">
-      <h2 className="text-lg font-semibold tracking-tight text-[#252A30]">
+      <h2 className="text-lg font-semibold tracking-tight text-slate-100">
         {title}
       </h2>
-      <p className="mt-1 text-sm text-slate-600">{description}</p>
+      <p className="mt-1 text-sm text-slate-400">{description}</p>
     </div>
   );
 }
@@ -506,11 +461,9 @@ export default function Home() {
   /* -------------------------------------------------------------- */
 
   useEffect(() => {
-    const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-
     Promise.all([
-      fetch(`${basePath}/data/validation_scores.json`),
-      fetch(`${basePath}/data/validation_model_comparison.json`),
+      fetch("/data/validation_scores.json"),
+      fetch("/data/validation_model_comparison.json"),
     ])
       .then(async ([scoresResponse, comparisonResponse]) => {
         if (!scoresResponse.ok) {
@@ -675,7 +628,7 @@ export default function Home() {
 
   return (
     <main
-      className="min-h-screen text-[#252A30]"
+      className="min-h-screen text-slate-100"
       style={pageStyle}
     >
       <div className="flex min-h-screen">
@@ -685,7 +638,7 @@ export default function Home() {
         {/* -------------------------------------------------------- */}
 
         <aside
-          className="hidden w-64 shrink-0 flex-col border-r border-[#D6DBE1] p-5 lg:flex"
+          className="hidden w-64 shrink-0 flex-col border-r border-slate-700/70 p-5 lg:flex"
           style={sidebarStyle}
         >
           <div className="flex items-center gap-3 px-2 py-3">
@@ -697,17 +650,17 @@ export default function Home() {
             </div>
 
             <div>
-              <h1 className="font-semibold tracking-tight text-[#252A30]">
+              <h1 className="font-semibold tracking-tight text-slate-100">
                 NetGuard ML
               </h1>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-slate-400">
                 Research dashboard
               </p>
             </div>
           </div>
 
           <div className="mt-10">
-            <p className="mb-3 px-3 text-xs font-semibold uppercase tracking-widest text-slate-500">
+            <p className="mb-3 px-3 text-xs font-semibold uppercase tracking-widest text-slate-400">
               Workspace
             </p>
 
@@ -723,8 +676,8 @@ export default function Home() {
                   }
                   className={`flex w-full items-center gap-3 rounded-xl border px-3 py-3 text-left text-sm font-medium transition ${
                     activeTab === label
-                      ? "text-[#6A5433]"
-                      : "border-transparent text-slate-600 hover:border-[#E0D8CA] hover:bg-white/70 hover:text-[#252A30]"
+                      ? "text-[#9CF5E8]"
+                      : "border-transparent text-slate-400 hover:border-[#E0D8CA] hover:bg-slate-900/50 hover:text-slate-100"
                   }`}
                 >
                   <Icon size={18} />
@@ -735,15 +688,15 @@ export default function Home() {
           </div>
 
           <div
-            className="mt-auto rounded-2xl border border-[#D6DBE1] p-4"
+            className="mt-auto rounded-2xl border border-slate-700/70 p-4"
             style={panelStyle}
           >
-            <div className="flex items-center gap-2 text-sm font-semibold text-[#333942]">
-              <Database size={17} className="text-[#A78955]" />
+            <div className="flex items-center gap-2 text-sm font-semibold text-slate-200">
+              <Database size={17} className="text-[#2DE2C5]" />
               Dataset
             </div>
 
-            <p className="mt-2 text-xs leading-5 text-slate-600">
+            <p className="mt-2 text-xs leading-5 text-slate-400">
               UNSW-NB15 · 175,341 training records
             </p>
 
@@ -767,21 +720,21 @@ export default function Home() {
           {/* Header */}
 
           <header
-            className="flex flex-wrap items-center justify-between gap-4 border-b border-[#D6DBE1] px-5 py-4 sm:px-8"
+            className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-700/70 px-5 py-4 sm:px-8"
             style={headerStyle}
           >
             <div>
-              <p className="text-xs font-semibold tracking-widest text-[#9A7B4C]">
+              <p className="text-xs font-semibold tracking-widest text-[#2DE2C5]">
                 MACHINE LEARNING / SECURITY
               </p>
 
-              <h2 className="mt-1 text-lg font-semibold text-[#252A30]">
+              <h2 className="mt-1 text-lg font-semibold text-slate-100">
                 Network Intrusion Detection
               </h2>
             </div>
 
             <div
-              className="flex items-center gap-2 rounded-full border border-[#D7CCB8] bg-[#F4EFE6] px-3 py-2 text-xs font-semibold text-[#6F5733]"
+              className="flex items-center gap-2 rounded-full border border-teal-400/30 bg-slate-900/70 px-3 py-2 text-xs font-semibold text-[#6F5733]"
             >
               <span className="h-2 w-2 rounded-full bg-[#42D6A4]" />
               Offline evaluation
@@ -792,7 +745,7 @@ export default function Home() {
           {/* Mobile navigation */}
 
           <div
-            className="border-b border-[#D6DBE1] px-4 py-3 lg:hidden"
+            className="border-b border-slate-700/70 px-4 py-3 lg:hidden"
             style={headerStyle}
           >
             <div className="flex gap-2 overflow-x-auto">
@@ -807,8 +760,8 @@ export default function Home() {
                   }
                   className={`shrink-0 rounded-lg border px-3 py-2 text-xs font-medium ${
                     activeTab === label
-                      ? "text-[#6A5433]"
-                      : "border-[#E0E3E7] bg-white/70 text-slate-600"
+                      ? "text-[#9CF5E8]"
+                      : "border-slate-700 bg-slate-900/50 text-slate-400"
                   }`}
                 >
                   {label}
@@ -823,15 +776,15 @@ export default function Home() {
 
             <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
               <div>
-                <p className="text-sm font-semibold tracking-widest text-[#A18456]">
+                <p className="text-sm font-semibold tracking-widest text-[#2DE2C5]">
                   UNSW-NB15 BENCHMARK
                 </p>
 
-                <h1 className="mt-2 text-2xl font-bold tracking-tight text-[#252A30] sm:text-3xl">
+                <h1 className="mt-2 text-2xl font-bold tracking-tight text-slate-100 sm:text-3xl">
                   {activeTab}
                 </h1>
 
-                <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
+                <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-400">
                   Understand how alert thresholds affect intrusion detection,
                   false alarms and generalization to unseen traffic.
                 </p>
@@ -841,15 +794,15 @@ export default function Home() {
                 className="rounded-xl border px-4 py-3"
                 style={panelStyle}
               >
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-slate-400">
                   Selected model
                 </p>
 
-                <p className="mt-1 font-semibold text-[#252A30]">
+                <p className="mt-1 font-semibold text-slate-100">
                   {selectedModel}
                 </p>
 
-                <p className="mt-1 text-xs text-slate-500">
+                <p className="mt-1 text-xs text-slate-400">
                   Frozen threshold:{" "}
                   {selectedResult
                     ? frozenThreshold.toFixed(6)
@@ -884,7 +837,7 @@ export default function Home() {
 
             {activeTab === "Overview" && (
               <>
-                <p className="mb-4 text-xs font-medium text-slate-500">
+                <p className="mb-4 text-xs font-medium text-slate-400">
                   Official test snapshot: Random Forest at its frozen
                   validation-selected threshold.
                 </p>
@@ -933,7 +886,7 @@ export default function Home() {
                       description="Random Forest results at the same frozen threshold."
                     />
 
-                    <div className="mb-4 flex flex-wrap gap-4 text-xs text-slate-600">
+                    <div className="mb-4 flex flex-wrap gap-4 text-xs text-slate-400">
                       <span className="flex items-center gap-2">
                         <span className="h-2.5 w-2.5 rounded-sm bg-[#2DE2C5]" />
                         Validation
@@ -970,19 +923,19 @@ export default function Home() {
                           {chartDefs}
 
                           <CartesianGrid
-                            stroke="#DCE1E6"
+                            stroke="rgba(148,163,184,0.18)"
                             strokeDasharray="3 3"
                             vertical={false}
                           />
 
                           <XAxis
                             dataKey="metric"
-                            tick={{ fontSize: 11, fill: "#64748B" }}
+                            tick={{ fontSize: 11, fill: "#94A3B8" }}
                           />
 
                           <YAxis
                             domain={[0, 100]}
-                            tick={{ fontSize: 11, fill: "#64748B" }}
+                            tick={{ fontSize: 11, fill: "#94A3B8" }}
                           />
 
                           <Tooltip
@@ -1070,7 +1023,7 @@ export default function Home() {
                       />
                     </div>
 
-                    <p className="mt-4 text-xs leading-5 text-slate-500">
+                    <p className="mt-4 text-xs leading-5 text-slate-400">
                       Official test set: 82,332 records.
                     </p>
                   </Panel>
@@ -1137,6 +1090,386 @@ export default function Home() {
                     </Hint>
                   </div>
                 </Panel>
+
+                <div className="mt-8 space-y-6">
+                  <Panel>
+                    <SectionTitle
+                      title="01. Problem formulation"
+                      description="Defining the detection task, prediction target and evaluation objective."
+                    />
+
+                    <div className="space-y-7">
+                      <div className="max-w-4xl">
+                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">
+                          The challenge · Network security
+                        </p>
+                        <h3 className="mt-3 text-2xl font-semibold leading-tight tracking-tight text-white sm:text-3xl">
+                          Distinguishing malicious activity from legitimate network traffic.
+                        </h3>
+                        <p className="mt-4 text-sm leading-7 text-slate-400">
+                          Computer networks generate large volumes of connections, some of which may represent malicious activity. Manually inspecting every connection is difficult. Machine-learning models can help identify suspicious traffic, but every detection decision involves a trade-off: missing an attack can leave malicious activity undetected, while incorrectly flagging normal traffic creates false alarms.
+                        </p>
+                      </div>
+
+                      <div>
+                        <div className="mb-3 flex items-center gap-2">
+                          <span className="h-5 w-1 rounded-full bg-cyan-400" />
+                          <h3 className="text-sm font-semibold text-slate-100">
+                            Defining the prediction task
+                          </h3>
+                        </div>
+
+                        <div className="grid gap-3 sm:grid-cols-2">
+                          <div className="rounded-xl border border-slate-700/70 bg-[#0B1729] p-4 transition-colors hover:border-cyan-400/30">
+                            <div className="flex items-center gap-2">
+                              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-cyan-400/10 text-cyan-400">
+                                <Activity size={18} />
+                              </span>
+                              <p className="text-sm font-semibold text-slate-100">Observation unit</p>
+                            </div>
+                            <p className="mt-3 text-sm leading-6 text-slate-400">
+                              One row represents a network traffic connection in the UNSW-NB15 dataset, described by its recorded features.
+                            </p>
+                          </div>
+
+                          <div className="rounded-xl border border-slate-700/70 bg-[#0B1729] p-4 transition-colors hover:border-cyan-400/30">
+                            <div className="flex items-center gap-2">
+                              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-cyan-400/10 text-cyan-400">
+                                <Target size={18} />
+                              </span>
+                              <p className="text-sm font-semibold text-slate-100">Prediction target</p>
+                            </div>
+                            <div className="mt-3 flex flex-wrap items-center gap-2">
+                              <span className="rounded-md border border-emerald-400/20 bg-emerald-400/10 px-3 py-1.5 text-xs font-semibold text-emerald-400">0 · Normal</span>
+                              <span className="rounded-md border border-rose-400/20 bg-rose-400/10 px-3 py-1.5 text-xs font-semibold text-rose-400">1 · Attack</span>
+                            </div>
+                            <p className="mt-2 text-xs leading-5 text-slate-500">Binary classification using the dataset's label column.</p>
+                          </div>
+
+                          <div className="rounded-xl border border-slate-700/70 bg-[#0B1729] p-4 transition-colors hover:border-cyan-400/30">
+                            <div className="flex items-center gap-2">
+                              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-cyan-400/10 text-cyan-400">
+                                <Clock size={18} />
+                              </span>
+                              <p className="text-sm font-semibold text-slate-100">Prediction setting</p>
+                            </div>
+                            <p className="mt-3 text-sm leading-6 text-slate-400">
+                              The classifier predicts from the features recorded for each connection. Evaluation is performed offline on stored dataset records, not on live network traffic.
+                            </p>
+                          </div>
+
+                          <div className="rounded-xl border border-slate-700/70 bg-[#0B1729] p-4 transition-colors hover:border-cyan-400/30">
+                            <div className="flex items-center gap-2">
+                              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-cyan-400/10 text-cyan-400">
+                                <Database size={18} />
+                              </span>
+                              <p className="text-sm font-semibold text-slate-100">Available information</p>
+                            </div>
+                            <p className="mt-3 text-sm leading-6 text-slate-400">
+                              Numerical and categorical connection features are used. <code className="mx-1 text-cyan-300">id</code>, <code className="mx-1 text-cyan-300">label</code> and <code className="mx-1 text-cyan-300">attack_cat</code> are excluded from the predictive feature matrix.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="relative overflow-hidden rounded-xl border border-cyan-400/20 bg-gradient-to-br from-[#10263D] to-[#0B1729] p-5 sm:p-6">
+                        <div className="pointer-events-none absolute -right-8 -top-8 h-40 w-40 rounded-full bg-cyan-400/5 blur-3xl" />
+                        <div className="relative">
+                          <div className="flex items-center gap-2">
+                            <span className="h-2 w-2 rounded-full bg-cyan-400" />
+                            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-400">Research question</p>
+                          </div>
+                          <h3 className="mt-3 max-w-4xl text-lg font-semibold leading-8 text-white sm:text-xl">
+                            How effectively can supervised machine-learning models distinguish malicious network connections from normal traffic, and how does threshold selection under a false-positive constraint affect detection performance on unseen data?
+                          </h3>
+                        </div>
+                      </div>
+
+                      <div className="border-l-2 border-rose-400/70 pl-4">
+                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-rose-300">Evaluation strategy</p>
+                        <p className="mt-2 text-sm leading-7 text-slate-400">
+                          Select each model's decision threshold using validation data to maximize attack recall while keeping the validation false-positive rate at or below <span className="font-semibold text-white">5%</span>. Freeze that threshold before evaluating on the official test set. This allows us to examine whether the validation operating point generalizes to unseen traffic.
+                        </p>
+                      </div>
+                    </div>
+                  </Panel>
+
+                  <Panel>
+                    <SectionTitle
+                      title="2. Dataset"
+                      description="Source, structure, prediction target and data-quality considerations."
+                    />
+
+                    <div className="grid gap-3 sm:grid-cols-3">
+                      <Tile tint="teal" label="Training records" value="175,341" large={false} hint="Supplied training split." />
+                      <Tile tint="violet" label="Official test records" value="82,332" large={false} hint="Held-out official test split." />
+                      <Tile tint="amber" label="Input features" value="42" large={false} hint="39 numerical and 3 categorical features." />
+                    </div>
+
+                    <div className="mt-4 grid gap-3 md:grid-cols-2">
+                      <div className="rounded-xl border border-slate-700/70 bg-slate-900/40 p-4">
+                        <h3 className="font-semibold text-slate-100">What does one row represent?</h3>
+                        <p className="mt-2 text-sm leading-6 text-slate-300">
+                          One row represents a network traffic connection described by numerical
+                          and categorical traffic features. The target column, label, identifies
+                          whether that connection is normal or malicious.
+                        </p>
+                      </div>
+                      <div className="rounded-xl border border-slate-700/70 bg-slate-900/40 p-4">
+                        <h3 className="font-semibold text-slate-100">Prediction target</h3>
+                        <p className="mt-2 text-sm leading-6 text-slate-300">
+                          0 = normal traffic. 1 = attack traffic. The attack_cat column contains
+                          attack-category metadata and is not used as an input feature.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="mt-4 rounded-xl border border-slate-700/70 bg-slate-900/40 p-4">
+                      <h3 className="font-semibold text-slate-100">Training-set class distribution</h3>
+                      <div className="mt-3 flex h-3 overflow-hidden rounded-full bg-slate-800">
+                        <div className="h-full bg-cyan-400" style={{ width: "31.94%" }} />
+                        <div className="h-full bg-rose-400" style={{ width: "68.06%" }} />
+                      </div>
+                      <div className="mt-3 flex flex-wrap justify-between gap-2 text-sm">
+                        <span className="text-cyan-300">Normal: 31.94%</span>
+                        <span className="text-rose-300">Attack: 68.06%</span>
+                      </div>
+                      <p className="mt-3 text-sm leading-6 text-slate-300">
+                        The target classes are imbalanced, with attack records forming the
+                        majority. Accuracy alone could therefore hide weaknesses in detecting
+                        normal traffic or controlling false alarms.
+                      </p>
+                    </div>
+
+                    <p className="mt-4 text-sm leading-7 text-slate-300">
+                      The supplied training data has 45 columns: 39 numerical features,
+                      3 categorical features and 3 metadata/target columns. The feature
+                      matrix excludes id, label and attack_cat. The dataset audit found
+                      zero exact row overlaps between the supplied training and official
+                      test splits.
+                    </p>
+                  </Panel>
+                  
+                  <Panel>
+                    <SectionTitle
+                      title="3. Preprocessing"
+                      description="How raw network-traffic features are transformed and why each transformation is used."
+                    />
+
+                    <div className="grid gap-3 md:grid-cols-2">
+                      <div className="rounded-xl border border-slate-700/70 bg-slate-900/40 p-4">
+                        <h3 className="font-semibold text-slate-100">Numerical features</h3>
+                        <div className="mt-3 space-y-3 text-sm leading-6 text-slate-300">
+                          <div>
+                            <p className="font-medium text-teal-200">1. Median imputation</p>
+                            <p>Replaces missing numerical values with the training-set median, which is less sensitive to extreme values than the mean.</p>
+                          </div>
+                          <div>
+                            <p className="font-medium text-teal-200">2. StandardScaler</p>
+                            <p>Centers and scales numerical features. This is particularly useful for scale-sensitive models such as Logistic Regression and Linear SVC.</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="rounded-xl border border-slate-700/70 bg-slate-900/40 p-4">
+                        <h3 className="font-semibold text-slate-100">Categorical features</h3>
+                        <div className="mt-3 space-y-3 text-sm leading-6 text-slate-300">
+                          <div>
+                            <p className="font-medium text-teal-200">1. Most-frequent imputation</p>
+                            <p>Fills missing categorical values using the most frequent training-set category.</p>
+                          </div>
+                          <div>
+                            <p className="font-medium text-teal-200">2. One-hot encoding</p>
+                            <p>Converts categories into numerical indicator columns so classifiers can use them without imposing an artificial category order.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="mt-4 rounded-xl border border-rose-400/20 bg-rose-400/5 p-4">
+                      <h3 className="font-semibold text-rose-200">Preventing target leakage</h3>
+                      <p className="mt-2 text-sm leading-6 text-slate-300">
+                        The id, label and attack_cat columns are excluded from the predictive
+                        feature matrix. In particular, attack_cat is not used because it
+                        describes the attack category and would reveal information about
+                        the target.
+                      </p>
+                    </div>
+
+                    <div className="mt-4 rounded-xl border border-slate-700/70 bg-slate-900/40 p-4">
+                      <h3 className="font-semibold text-slate-100">Leakage-safe implementation</h3>
+                      <p className="mt-2 text-sm leading-6 text-slate-300">
+                        A scikit-learn ColumnTransformer combines numerical and categorical
+                        preprocessing inside the model pipeline. The transformations are
+                        fitted on training data and then applied to validation and test data.
+                        This prevents information from the evaluation sets influencing
+                        the learned preprocessing statistics.
+                      </p>
+                    </div>
+                  </Panel>
+                  
+                  <Panel>
+                    <SectionTitle
+                      title="4. Baseline and methods"
+                      description="Three classifiers are compared to understand different approaches to network-traffic classification."
+                    />
+
+                    <div className="grid gap-3 md:grid-cols-3">
+                      <div className="rounded-xl border border-slate-700/70 bg-slate-900/40 p-4">
+                        <p className="font-semibold text-slate-100">Logistic Regression</p>
+                        <p className="mt-2 text-sm leading-6 text-slate-300">
+                          Used as the linear classification baseline. It provides a relatively
+                          simple reference for determining whether more complex models improve
+                          detection performance.
+                        </p>
+                        <p className="mt-3 text-xs text-slate-400">Class weighting: balanced</p>
+                      </div>
+
+                      <div className="rounded-xl border border-teal-400/30 bg-teal-400/5 p-4">
+                        <p className="font-semibold text-[#9CF5E8]">Random Forest</p>
+                        <p className="mt-2 text-sm leading-6 text-slate-300">
+                          Combines multiple decision trees. It can capture nonlinear
+                          relationships and interactions between traffic features.
+                        </p>
+                        <p className="mt-3 text-xs text-teal-200">Class weighting: balanced_subsample</p>
+                      </div>
+
+                      <div className="rounded-xl border border-slate-700/70 bg-slate-900/40 p-4">
+                        <p className="font-semibold text-slate-100">Linear SVC</p>
+                        <p className="mt-2 text-sm leading-6 text-slate-300">
+                          Uses a maximum-margin linear decision boundary. It provides another
+                          linear approach for comparison with Logistic Regression.
+                        </p>
+                        <p className="mt-3 text-xs text-slate-400">Output: decision scores</p>
+                      </div>
+                    </div>
+
+                    <div className="mt-4 rounded-xl border border-slate-700/70 bg-slate-900/40 p-4">
+                      <h3 className="font-semibold text-slate-100">Why compare these models?</h3>
+                      <p className="mt-2 text-sm leading-6 text-slate-300">
+                        Logistic Regression and Linear SVC provide linear decision boundaries,
+                        while Random Forest can model nonlinear feature relationships.
+                        Comparing them under the same data split and evaluation protocol
+                        helps assess whether the added model complexity improves detection.
+                      </p>
+                    </div>
+
+                    <div className="mt-4 rounded-xl border border-teal-400/20 bg-teal-400/5 p-4">
+                      <p className="font-semibold text-[#9CF5E8]">Recorded validation result</p>
+                      <p className="mt-2 text-sm leading-6 text-slate-300">
+                        Random Forest achieved 95.79% recall and 4.99% false-positive rate
+                        at its selected validation threshold. It is the strongest recorded
+                        validation model in this experiment.
+                      </p>
+                    </div>
+                  </Panel>
+
+                  <Panel>
+                    <SectionTitle
+                      title="5. Evaluation protocol"
+                      description="How models are compared, how the alert threshold is selected, and how final performance is measured."
+                    />
+
+                    <div className="space-y-3">
+                      <div className="rounded-xl border border-slate-700/70 bg-slate-900/40 p-4">
+                        <p className="font-semibold text-teal-200">01 — Training and validation split</p>
+                        <p className="mt-2 text-sm leading-6 text-slate-300">
+                          The supplied training data is divided into 80% training and 20%
+                          validation subsets using stratification. This preserves the
+                          approximate class proportions in both subsets.
+                        </p>
+                      </div>
+
+                      <div className="rounded-xl border border-slate-700/70 bg-slate-900/40 p-4">
+                        <p className="font-semibold text-teal-200">02 — Threshold selection</p>
+                        <p className="mt-2 text-sm leading-6 text-slate-300">
+                          The decision threshold is selected using validation predictions.
+                          The objective is to maximize attack recall while keeping the
+                          validation false-positive rate at or below 5%.
+                        </p>
+                      </div>
+
+                      <div className="rounded-xl border border-slate-700/70 bg-slate-900/40 p-4">
+                        <p className="font-semibold text-teal-200">03 — Freeze the operating point</p>
+                        <p className="mt-2 text-sm leading-6 text-slate-300">
+                          Once selected, the threshold is frozen. The official test results
+                          are not used to adjust the threshold or choose the model.
+                        </p>
+                      </div>
+
+                      <div className="rounded-xl border border-slate-700/70 bg-slate-900/40 p-4">
+                        <p className="font-semibold text-teal-200">04 — Official test evaluation</p>
+                        <p className="mt-2 text-sm leading-6 text-slate-300">
+                          The frozen operating point is evaluated on the separate official
+                          test split. This measures how well the validation-selected
+                          decision rule transfers to unseen records.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                      <div className="rounded-xl border border-slate-700/70 bg-slate-900/40 p-4">
+                        <p className="font-semibold text-slate-100">Recall</p>
+                        <p className="mt-1 text-sm text-slate-300">
+                          Fraction of actual attacks correctly detected.
+                        </p>
+                      </div>
+                      <div className="rounded-xl border border-slate-700/70 bg-slate-900/40 p-4">
+                        <p className="font-semibold text-slate-100">False-positive rate</p>
+                        <p className="mt-1 text-sm text-slate-300">
+                          Fraction of normal connections incorrectly flagged as attacks.
+                        </p>
+                      </div>
+                      <div className="rounded-xl border border-slate-700/70 bg-slate-900/40 p-4">
+                        <p className="font-semibold text-slate-100">Precision</p>
+                        <p className="mt-1 text-sm text-slate-300">
+                          Fraction of predicted attacks that are actually attacks.
+                        </p>
+                      </div>
+                      <div className="rounded-xl border border-slate-700/70 bg-slate-900/40 p-4">
+                        <p className="font-semibold text-slate-100">Average precision</p>
+                        <p className="mt-1 text-sm text-slate-300">
+                          Summarizes precision-recall performance across thresholds.
+                          It does not represent performance at just the selected threshold.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="mt-4 rounded-xl border border-rose-400/20 bg-rose-400/5 p-4">
+                      <p className="font-semibold text-rose-200">Why the test result matters</p>
+                      <p className="mt-2 text-sm leading-6 text-slate-300">
+                        A validation FPR below 5% does not guarantee the same FPR on
+                        unseen data. The official test FPR of 18.68% demonstrates why
+                        held-out evaluation is necessary.
+                      </p>
+                    </div>
+
+                    <p className="mt-4 text-xs leading-5 text-slate-400">
+                      The Threshold Explorer changes the threshold for validation analysis
+                      only. The official test results remain fixed and are not recalculated
+                      through this interaction.
+                    </p>
+                  </Panel>
+
+
+                  <Panel><SectionTitle title="6. Results" description="Validation operating point and official test outcome." />
+                    <div className="grid gap-3 sm:grid-cols-2"><Tile tint="green" label="Validation recall · RF" value="95.79%" large={false} hint="Validation recall at the threshold selected under the 5% FPR constraint." /><Tile tint="amber" label="Validation FPR · RF" value="4.99%" large={false} hint="Validation false-positive rate at the selected threshold." /><Tile tint="teal" label="Official test recall" value="97.21%" large={false} hint="44,066 of 45,332 attack records detected." /><Tile tint="rose" label="Official test FPR" value="18.68%" large={false} hint="6,912 of 37,000 normal records incorrectly flagged." /></div>
+                    <p className="mt-4 text-sm leading-7 text-slate-300">At the frozen Random Forest threshold, test recall is 97.21%, while test FPR rises to 18.68% compared with 4.99% on validation. The model detects most attacks, but the increase in false alarms is operationally important.</p>
+                  </Panel>
+
+                  <Panel><SectionTitle title="7. Error analysis" description="Aggregate performance can conceal category-specific weaknesses." /><p className="text-sm leading-7 text-slate-300">Fuzzers are the clearest weakness: 1,170 of 6,062 test records are missed, corresponding to 80.70% recall. Other listed attack categories have recall between 98.15% and 100%. Normal-traffic score quantiles also differ: the 75th percentile is 0.0057 on validation and 0.4708 on test. This indicates a score-distribution difference but does not establish its cause.</p></Panel>
+
+                  <Panel><SectionTitle title="8. Limitations" description="What these results do not establish." /><ul className="list-disc space-y-2 pl-5 text-sm leading-7 text-slate-300"><li>UNSW-NB15 is a benchmark dataset; results do not guarantee performance on live production traffic.</li><li>A validation FPR constraint does not guarantee test FPR remains below 5%, as the 18.68% test FPR demonstrates.</li><li>Attack-category results are dataset-specific and may be affected by sample size; Worms has only 44 test records.</li><li>Average precision summarizes ranking across thresholds and does not describe false alarms at the chosen operating threshold.</li><li>This is an offline binary-classification dashboard, not a deployed packet-inspection or real-time alerting system.</li><li>Score quantiles show distribution differences but cannot identify their cause on their own.</li></ul></Panel>
+
+                  <Panel><SectionTitle title="9. Conclusion" description="A result should be judged by detection and false-alarm behavior." /><p className="text-sm leading-7 text-slate-300">Random Forest provides the strongest recorded validation result under the 5% FPR selection constraint. On the official test set it detects 97.21% of attacks, but FPR increases to 18.68%. Fuzzers account for most missed attacks. The experiment demonstrates why threshold selection, held-out testing and category-level error analysis matter: high detection recall alone is not sufficient to establish a reliable intrusion-detection operating point.</p></Panel>
+
+                  <Panel><SectionTitle title="10. Reproduction" description="Run the local experiment and start the dashboard." /><p className="mb-3 text-sm leading-6 text-slate-300">Run from the repository root. Place the dataset files in the directory expected by the Python scripts.</p><pre className="overflow-x-auto rounded-xl border border-slate-700 bg-[#080E1B] p-4 text-xs leading-6 text-teal-100"><code>{`pip install -r requirements.txt
+python dataset_inspection.py
+python train_evaluate.py
+cd frontend
+npm install
+npm run dev`}</code></pre><p className="mt-3 text-xs leading-5 text-slate-400">These commands assume requirements.txt, dataset_inspection.py and train_evaluate.py are at the repository root, and that the Python script exports validation_scores.json and validation_model_comparison.json into frontend/public/data/. Adjust paths to match your checked-out repository.</p></Panel>
+                </div>
               </>
             )}
 
@@ -1156,7 +1489,7 @@ export default function Home() {
                   />
 
                   {scoresLoading ? (
-                    <p className="rounded-xl border border-[#D9DDE2] bg-white p-4 text-sm text-slate-600">
+                    <p className="rounded-xl border border-slate-700/70 bg-white p-4 text-sm text-slate-400">
                       Loading saved validation predictions...
                     </p>
                   ) : !scoresError && validationScores.length > 0 ? (
@@ -1168,13 +1501,13 @@ export default function Home() {
                         <div className="flex items-center justify-between">
                           <label
                             htmlFor="threshold"
-                            className="text-sm font-semibold text-[#303640]"
+                            className="text-sm font-semibold text-slate-100"
                           >
                             Attack score threshold
                           </label>
 
                           <span
-                            className="rounded-lg border border-[#C8B58F] bg-[#F4EFE6] px-3 py-1.5 font-mono text-sm font-semibold text-[#705833]"
+                            className="rounded-lg border border-teal-400/30 bg-slate-900/70 px-3 py-1.5 font-mono text-sm font-semibold text-[#9CF5E8]"
                           >
                             {activeThreshold.toFixed(6)}
                           </span>
@@ -1190,15 +1523,15 @@ export default function Home() {
                           onChange={(event) =>
                             setThreshold(Number(event.target.value))
                           }
-                          className="mt-6 w-full accent-[#B89B68]"
+                          className="mt-6 w-full accent-[#2DE2C5]"
                         />
 
-                        <div className="mt-2 flex justify-between text-xs text-slate-500">
+                        <div className="mt-2 flex justify-between text-xs text-slate-400">
                           <span>Lower score · More alerts</span>
                           <span>Higher score · Fewer alerts</span>
                         </div>
 
-                        <p className="mt-4 text-xs leading-5 text-slate-500">
+                        <p className="mt-4 text-xs leading-5 text-slate-400">
                           {selectedModel === "Linear SVC"
                             ? "Linear SVC uses decision scores, which may be negative or positive. These are not probabilities."
                             : "Logistic Regression and Random Forest use attack probability scores."}
@@ -1235,18 +1568,18 @@ export default function Home() {
                           content="The threshold was selected on validation data to maximize recall while keeping false-positive rate at or below 5%."
                         >
                           <div
-                            className="rounded-xl border border-[#D9DDE2] p-4"
+                            className="rounded-xl border border-slate-700/70 p-4"
                             style={panelStyle}
                           >
-                            <p className="text-xs text-slate-500">
+                            <p className="text-xs text-slate-400">
                               Frozen threshold
                             </p>
 
-                            <p className="mt-2 text-2xl font-semibold text-[#252A30]">
+                            <p className="mt-2 text-2xl font-semibold text-slate-100">
                               {frozenThreshold.toFixed(6)}
                             </p>
 
-                            <p className="mt-1 text-xs text-slate-500">
+                            <p className="mt-1 text-xs text-slate-400">
                               Chosen on validation data
                             </p>
                           </div>
@@ -1258,18 +1591,18 @@ export default function Home() {
                           content="A fixed false-alarm budget allows all models to be compared under the same validation FPR constraint."
                         >
                           <div
-                            className="rounded-xl border border-[#D9DDE2] p-4"
+                            className="rounded-xl border border-slate-700/70 p-4"
                             style={panelStyle}
                           >
-                            <p className="text-xs text-slate-500">
+                            <p className="text-xs text-slate-400">
                               Validation FPR constraint
                             </p>
 
-                            <p className="mt-2 text-2xl font-semibold text-[#252A30]">
+                            <p className="mt-2 text-2xl font-semibold text-slate-100">
                               ≤ 5%
                             </p>
 
-                            <p className="mt-1 text-xs text-slate-500">
+                            <p className="mt-1 text-xs text-slate-400">
                               Threshold selection objective
                             </p>
                           </div>
@@ -1289,7 +1622,7 @@ export default function Home() {
 
                   <label
                     htmlFor="model-select"
-                    className="mb-2 block text-sm font-semibold text-[#303640]"
+                    className="mb-2 block text-sm font-semibold text-slate-100"
                   >
                     Model to explore
                   </label>
@@ -1302,7 +1635,7 @@ export default function Home() {
                       setThreshold(null);
                     }}
                     disabled={scoresLoading || Boolean(scoresError)}
-                    className="mb-5 w-full rounded-xl border border-[#D1D6DC] bg-white px-3 py-2.5 text-sm text-[#303640] outline-none focus:border-[#B89B68] disabled:opacity-50"
+                    className="mb-5 w-full rounded-xl border border-slate-600 bg-white px-3 py-2.5 text-sm text-slate-100 outline-none focus:border-[#2DE2C5] disabled:opacity-50"
                   >
                     <option value="Random Forest">Random Forest</option>
                     <option value="Logistic Regression">Logistic Regression</option>
@@ -1310,7 +1643,7 @@ export default function Home() {
                   </select>
 
                   {scoresLoading ? (
-                    <p className="rounded-xl border border-[#D9DDE2] bg-white p-4 text-sm text-slate-600">
+                    <p className="rounded-xl border border-slate-700/70 bg-white p-4 text-sm text-slate-400">
                       Loading validation predictions...
                     </p>
                   ) : scoresError ? (
@@ -1360,11 +1693,11 @@ export default function Home() {
                         />
                       </div>
 
-                      <h3 className="mt-6 font-semibold text-[#303640]">
+                      <h3 className="mt-6 font-semibold text-slate-100">
                         Validation confusion matrix
                       </h3>
 
-                      <p className="mt-1 text-xs text-slate-500">
+                      <p className="mt-1 text-xs text-slate-400">
                         Counts are recalculated whenever the threshold changes.
                       </p>
 
@@ -1419,7 +1752,7 @@ export default function Home() {
               <>
                 {scoresLoading ? (
                   <Panel>
-                    <p className="text-sm text-slate-600">
+                    <p className="text-sm text-slate-400">
                       Loading model comparison results...
                     </p>
                   </Panel>
@@ -1451,20 +1784,20 @@ export default function Home() {
                             {chartDefs}
 
                             <CartesianGrid
-                              stroke="#DCE1E6"
+                              stroke="rgba(148,163,184,0.18)"
                               strokeDasharray="3 3"
                               vertical={false}
                             />
 
                             <XAxis
                               dataKey="model"
-                              tick={{ fontSize: 11, fill: "#64748B" }}
+                              tick={{ fontSize: 11, fill: "#94A3B8" }}
                               interval={0}
                             />
 
                             <YAxis
                               domain={[0, 100]}
-                              tick={{ fontSize: 11, fill: "#64748B" }}
+                              tick={{ fontSize: 11, fill: "#94A3B8" }}
                             />
 
                             <Tooltip
@@ -1514,7 +1847,7 @@ export default function Home() {
 
                       <table className="w-full min-w-[750px] text-left text-sm">
                         <thead>
-                          <tr className="border-b border-[#DCE1E6] text-xs text-slate-500">
+                          <tr className="border-b border-slate-700/70 text-xs text-slate-400">
                             <th className="px-3 py-3 font-semibold">Model</th>
                             <th className="px-3 py-3 font-semibold">Threshold</th>
                             <th className="px-3 py-3 font-semibold">Recall</th>
@@ -1529,7 +1862,7 @@ export default function Home() {
                           {modelResults.map((result) => (
                             <tr
                               key={result.model}
-                              className="border-b border-[#E4E7EB] text-[#374151] transition hover:bg-[#F1EEE8] last:border-0"
+                              className="border-b border-slate-700/60 text-slate-200 transition hover:bg-white/5 last:border-0"
                             >
                               <td className="px-3 py-4 font-semibold">
                                 {result.model}
@@ -1563,7 +1896,7 @@ export default function Home() {
                         </tbody>
                       </table>
 
-                      <p className="mt-4 text-xs leading-5 text-slate-500">
+                      <p className="mt-4 text-xs leading-5 text-slate-400">
                         Average precision is displayed as a percentage. It is
                         calculated across score thresholds.
                       </p>
@@ -1579,7 +1912,7 @@ export default function Home() {
 
             {activeTab === "Error Analysis" && (
               <>
-                <p className="mb-4 text-xs font-medium text-slate-500">
+                <p className="mb-4 text-xs font-medium text-slate-400">
                   The following official test results are from the Random Forest evaluation.
                 </p>
 
@@ -1606,7 +1939,7 @@ export default function Home() {
                         {chartDefs}
 
                         <CartesianGrid
-                          stroke="#DCE1E6"
+                          stroke="rgba(148,163,184,0.18)"
                           strokeDasharray="3 3"
                           horizontal={false}
                         />
@@ -1614,14 +1947,14 @@ export default function Home() {
                         <XAxis
                           type="number"
                           domain={[0, 100]}
-                          tick={{ fontSize: 11, fill: "#64748B" }}
+                          tick={{ fontSize: 11, fill: "#94A3B8" }}
                         />
 
                         <YAxis
                           type="category"
                           dataKey="category"
                           width={110}
-                          tick={{ fontSize: 11, fill: "#64748B" }}
+                          tick={{ fontSize: 11, fill: "#94A3B8" }}
                         />
 
                         <Tooltip
@@ -1689,7 +2022,7 @@ export default function Home() {
                             style={{
                               fontSize: 11,
                               fontWeight: 700,
-                              fill: "#0B1020",
+                              fill: "#E2E8F0",
                             }}
                           />
                         </Bar>
@@ -1729,19 +2062,19 @@ export default function Home() {
                         }}
                       >
                         <CartesianGrid
-                          stroke="#DCE1E6"
+                          stroke="rgba(148,163,184,0.18)"
                           strokeDasharray="3 3"
                           vertical={false}
                         />
 
                         <XAxis
                           dataKey="quantile"
-                          tick={{ fontSize: 11, fill: "#64748B" }}
+                          tick={{ fontSize: 11, fill: "#94A3B8" }}
                         />
 
                         <YAxis
                           domain={[0, 1]}
-                          tick={{ fontSize: 11, fill: "#64748B" }}
+                          tick={{ fontSize: 11, fill: "#94A3B8" }}
                         />
 
                         <Tooltip
@@ -1775,7 +2108,7 @@ export default function Home() {
                     </ResponsiveContainer>
                   </div>
 
-                  <p className="mt-3 text-xs leading-5 text-slate-500">
+                  <p className="mt-3 text-xs leading-5 text-slate-400">
                     These are score quantiles for normal records only, not
                     attack-category scores. They describe the distribution
                     shift; they do not establish its cause.
@@ -1792,7 +2125,7 @@ export default function Home() {
 
                   <table className="w-full min-w-[500px] text-left text-sm">
                     <thead>
-                      <tr className="border-b border-[#DCE1E6] text-xs text-slate-500">
+                      <tr className="border-b border-slate-700/70 text-xs text-slate-400">
                         <th className="px-3 py-3 font-semibold">
                           Attack category
                         </th>
@@ -1806,7 +2139,7 @@ export default function Home() {
                       {attackData.map((item) => (
                         <tr
                           key={item.category}
-                          className="border-b border-[#E4E7EB] text-[#374151] transition hover:bg-[#F1EEE8] last:border-0"
+                          className="border-b border-slate-700/60 text-slate-200 transition hover:bg-white/5 last:border-0"
                         >
                           <td className="px-3 py-3 font-semibold">
                             {item.category}
@@ -1841,7 +2174,7 @@ export default function Home() {
             {/* FOOTER                                                */}
             {/* ---------------------------------------------------- */}
 
-            <footer className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-[#D4D9DF] py-5 text-xs text-slate-500">
+            <footer className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-slate-700/70 py-5 text-xs text-slate-400">
               <p>Network Intrusion Detection · UNSW-NB15</p>
               <p>Research dashboard · Offline evaluation only</p>
             </footer>
