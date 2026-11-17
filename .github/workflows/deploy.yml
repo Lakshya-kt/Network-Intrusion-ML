@@ -43,7 +43,7 @@ jobs:
       - name: Upload website
         uses: actions/upload-pages-artifact@v3
         with:
-          path: frontend/out
+          path: ./frontend/out
 
   deploy:
     environment:
