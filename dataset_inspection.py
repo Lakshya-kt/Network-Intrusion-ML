@@ -2,7 +2,9 @@
 import pandas as pd
 from pathlib import Path
 
-DATA_DIR = Path(r"D:\ml project\dataset")
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+DATA_DIR = PROJECT_ROOT / "dataset"
 
 train_path = DATA_DIR / "UNSW_NB15_training-set.csv"
 test_path = DATA_DIR / "UNSW_NB15_testing-set.csv"
