@@ -6,6 +6,7 @@ const basePath = isGitHubPages ? "/Network-Intrusion-ML" : "";
 
 const nextConfig: NextConfig = {
   output: "export",
+  allowedDevOrigins: ["10.7.22.84"],
   basePath,
   trailingSlash: true,
   images: {
