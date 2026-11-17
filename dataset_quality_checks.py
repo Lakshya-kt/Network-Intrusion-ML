@@ -2,10 +2,17 @@
 import pandas as pd
 from pathlib import Path
 
-DATA_DIR = Path(r"D:\ml project\dataset")
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
-train = pd.read_csv(DATA_DIR / "UNSW_NB15_training-set.csv")
-test = pd.read_csv(DATA_DIR / "UNSW_NB15_testing-set.csv")
+# Dataset directory
+DATA_DIR = PROJECT_ROOT / "dataset"
+
+# Dataset paths
+train_path = DATA_DIR / "UNSW_NB15_training-set.csv"
+test_path = DATA_DIR / "UNSW_NB15_testing-set.csv"
+
+train = pd.read_csv(train_path)
+test = pd.read_csv(test_path)
 
 print("=" * 60)
 print("DATA QUALITY AND LEAKAGE AUDIT")
