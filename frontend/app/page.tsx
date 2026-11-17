@@ -1639,11 +1639,17 @@ npm run dev`}</code></pre><p className="mt-3 text-xs leading-5 text-slate-400">T
                       setThreshold(null);
                     }}
                     disabled={scoresLoading || Boolean(scoresError)}
-                    className="mb-5 w-full rounded-xl border border-slate-600 bg-white px-3 py-2.5 text-sm text-slate-100 outline-none focus:border-[#2DE2C5] disabled:opacity-50"
+                    className="mb-5 w-full rounded-xl border border-slate-600 bg-[#111D30] px-3 py-2.5 text-sm text-slate-100 outline-none transition-colors focus:border-[#2DE2C5] focus:ring-1 focus:ring-[#2DE2C5]/30 disabled:opacity-50"
                   >
-                    <option value="Random Forest">Random Forest</option>
-                    <option value="Logistic Regression">Logistic Regression</option>
-                    <option value="Linear SVC">Linear SVC</option>
+                    <option value="Random Forest" className="bg-[#111D30] text-white">
+                      Random Forest
+                    </option>
+                    <option value="Logistic Regression" className="bg-[#111D30] text-white">
+                      Logistic Regression
+                    </option>
+                    <option value="Linear SVC" className="bg-[#111D30] text-white">
+                      Linear SVC
+                    </option>
                   </select>
 
                   {scoresLoading ? (
