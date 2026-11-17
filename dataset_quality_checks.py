@@ -2,7 +2,7 @@
 import pandas as pd
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents
 
 # Dataset directory
 DATA_DIR = PROJECT_ROOT / "dataset"
